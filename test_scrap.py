@@ -3,7 +3,8 @@ import urllib2
 import json
 
 # все лишнее убрал оставил только рабочее состояние захвата страницы
-
+# тут у меня была переменная даты проведения турнира которую я вставлял в самом конце
+# потом шел цикл изменения даты и сверка с системным временем 
 url = 'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170628'
 respone = urllib2.urlopen(url)
 page = respone.read()
