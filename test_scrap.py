@@ -4,6 +4,10 @@
 
 import json
 
+def matchstatus_live(p1,p2):
+    print(p1, ' ', p2)
+    return 'ok'
+
 from urllib.request import urlopen
 html = urlopen("https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170628")
 #print(html)
@@ -11,9 +15,18 @@ html = urlopen("https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/
 page = html.read()
 data =json.loads(page)
 
-print(data)
-print('=========')
+#print(data)
 print (data['doc'][0]['data']['matches']['11887608']['param5'])
+print('=========')
+
+my_list = data['doc'][0]['data']['matches']
+for elm in my_list:
+    matchstatus = data['doc'][0]['data']['matches'][elm]['match']['matchstatus']
+    if matchstatus == 'live':
+        matchstatus_live(elm, matchstatus)
+
+#print (data['doc'][0]['data']['matches'])
+
 
 #from urllib.request import urlopen
 #url = urlopen(url = 'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170628')
