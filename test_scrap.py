@@ -27,7 +27,6 @@ for elm in my_list:
 
 #print (data['doc'][0]['data']['matches'])
 
-
 #from urllib.request import urlopen
 #url = urlopen(url = 'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170628')
 #print(url)
