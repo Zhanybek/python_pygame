@@ -22,7 +22,6 @@ try:
 except requests.exceptions.ConnectTimeout:
     print('Oops. Problems requests!')
 
-
 '''
 from urllib.request import urlopen
 html = urlopen("https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170629")
