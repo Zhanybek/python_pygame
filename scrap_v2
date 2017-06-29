@@ -1,0 +1,16 @@
+import json
+import urllib2
+
+url = "https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170628"
+
+respone = urllib2.open(url)
+page = respone.read()
+data =json.loads(page)
+
+my_list = data['doc'][0]['data']['matches']
+for elm in my_list:
+    matchstatus = data['doc'][0]['data']['matches'][elm]['match']['matchstatus']
+    if matchstatus == 'live':
+        print (data['doc'][0]['data']['matches'][elm]['param5'])
+        print('=========')
+        print(elm, ' ', matchstatus)
