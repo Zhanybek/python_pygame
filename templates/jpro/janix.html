@@ -2,10 +2,13 @@
 
      {% block content %}
         <h1>Script</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
-            <button class="save btn btn-default" onclick='botton01()'>run script</button>
+        <form method="GET" class="post-form">{% csrf_token %}
+<!--            <button class="save btn btn-default" onclick='botton01()'>run script</button>
+-->
         </form>
 <br><br>
+         <button class="save btn btn-default" onclick='botton01()' >run script</button>
+         <br><br>
          {{ reft }}
     {% endblock %}
 

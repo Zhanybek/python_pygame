@@ -3,25 +3,23 @@
  */
 
 function botton01() {
-    alert('Hi freaks! I really');
 
-    $.ajax({
-  url: 'get_scipt',
-  type: 'POST',
-//  data: { code: code, lan: lang, input1:input1},
-  success: function(response) {
-    result = JSON.parse(response);
-    if (result.error) {
-      alert(result.error_text);
-    } else {  // Success
-       alert("");
-//      print 'yes';
-    } // end if
-    }, //end function
-  error: function(data) {
-  alert('error: '+data.text);
-            }
+ $.ajax({
+        url: "/get_scipt/",
+        type: 'GET',
+        data: {
+          'par1': 'obana',
+          'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+        },
 
-} // end ajax
-);
+        success: function (json) {
+            alert('success');
+
+            if (json) {
+                console.dir(json);
+            };
+
+        }
+    });
+
 }

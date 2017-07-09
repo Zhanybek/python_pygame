@@ -14,7 +14,7 @@ def scriptJ():
 
     try:
         response = requests.get(
-            'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170708', timeout=(10, 10))
+            'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170709', timeout=(10, 10))
         #   print(response.content)
 
         data = json.loads(response.content)

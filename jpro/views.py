@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -22,13 +23,28 @@ def post_detail(request, pk):
     return render(request, 'jpro/post_detail.html', {'post': post})
 
 def jonny(request):
-    jsondataL = scriptJ()
-    return render(request, 'jpro/janix.html', {'reft': jsondataL})
+#    jsondataL = scriptJ()
+    print('------------------------taki jonny ')
+    return render(request, 'jpro/janix.html', {})
 
+'''
 def get_scipt(request):
     print('------------------------get_scipt: ')
     jsondataL = scriptJ()
     return render(request, 'jpro/janix.html', {'reft': jsondataL})
+'''
+
+def get_scipt(request):
+    print('------------------------get_scipt: ')
+    if request.method == "GET":
+        print('------------------------GET: ', request.GET.get('par1'))
+        jsondataL = scriptJ()
+#        request.session['view'] = request.GET['view']
+        return HttpResponse(jsondataL, content_type='text/html')
+    else:
+        print('------------------------else: ')
+        return HttpResponse('no', content_type='text/html')
+
 
 def post_new(request):
    if request.method == "POST":
