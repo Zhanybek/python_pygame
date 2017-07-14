@@ -1,3 +1,6 @@
+import datetime
+from time import strftime
+
 import requests
 import json
 
@@ -10,11 +13,14 @@ def matchstatus_live(p1, p2, p3):
 
 
 def scriptJ():
-    print('script J')
+    now_date_str = datetime.datetime.now().strftime('%Y%m%d')
+#    date_str = str(now_date.year)+ str(now_date.month)+ str(now_date.day)
+    print('script J; ')
+    print( now_date_str)
 
     try:
         response = requests.get(
-            'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170709', timeout=(10, 10))
+            'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/'+now_date_str, timeout=(10, 10))
         #   print(response.content)
 
         data = json.loads(response.content)

@@ -16,7 +16,11 @@ function botton01() {
             alert('success');
 
             if (json) {
+                console.log('--------');
                 console.dir(json);
+                	$('#table').bootstrapTable({
+		data: json.rows
+	})
             };
 
         }

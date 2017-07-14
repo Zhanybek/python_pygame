@@ -45,7 +45,6 @@ def get_scipt(request):
         print('------------------------else: ')
         return HttpResponse('no', content_type='text/html')
 
-
 def post_new(request):
    if request.method == "POST":
        form = PostForm(request.POST)
