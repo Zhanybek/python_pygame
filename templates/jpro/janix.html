@@ -1,7 +1,6 @@
  {% extends 'jpro/jonny_base.html' %}
 
      {% block content %}
-        <h1>Script</h1>
         <form method="GET" class="post-form">{% csrf_token %}
 <!--            <button class="save btn btn-default" onclick='botton01()'>run script</button>
 -->
@@ -10,17 +9,9 @@
          <button class="save btn btn-default" onclick='botton01()' >run script</button>
          <br><br>
          {{ reft }}
+<div id='container02' class="div01">
 
-             <div class="container">
-        <table id="table" data-height="460">
-        <thead>
-            <tr>
-                <th data-field="id">Item ID</th>
-                <th data-field="name">Item Name</th>
-                <th data-field="price">Item Price</th>
-            </tr>
-        </thead>
-    </table>
-    </div>
+</div>
+
     {% endblock %}
 
