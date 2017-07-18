@@ -37,7 +37,7 @@ def get_scipt(request):
 def get_scipt(request):
     print('------------------------get_scipt: ')
     if request.method == "GET":
-        print('------------------------GET: ', request.GET.get('par1'))
+        print('----------------GET: ', request.GET.get('par1')+ ' tok: ',request.GET.get('csrftoken'))
         jsondataL = scriptJ()
 #        request.session['view'] = request.GET['view']
         return HttpResponse(jsondataL, content_type='text/html')

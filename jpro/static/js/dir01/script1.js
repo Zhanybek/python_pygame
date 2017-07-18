@@ -13,7 +13,7 @@
 //if (obj.hasOwnProperty(key)) {
     for (var key in obj) {
        let getl =obj[key];
-       tbL += '<tr><td style="display:none;">'+getl['id']+'</td><td>' + key +'</td><td>'+ getl['param5'] + '</td></tr>';
+       tbL += '<tr><td style="display:none;">'+getl['id']+'</td><td>' + (key*1+1) +'</td><td>'+ getl['param5'] + '</td></tr>';
      }
 
 /*
@@ -24,7 +24,7 @@
       if (tbL) {
         var ul = '<table>' + tbL + '</table>';
           let div01 = document.getElementsByClassName("div01");
-          div01.container02.style.overflow = 'scroll'
+         // div01.container02.style.overflow = 'auto'
          // div01.class.overflow //='scroll'
       }
 

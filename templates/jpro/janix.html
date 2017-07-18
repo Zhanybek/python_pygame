@@ -1,17 +1,19 @@
  {% extends 'jpro/jonny_base.html' %}
 
      {% block content %}
-        <form method="GET" class="post-form">{% csrf_token %}
-<!--            <button class="save btn btn-default" onclick='botton01()'>run script</button>
--->
+{% csrf_token %}
+<!--        <form method="GET" class="post-form">
+            <button class="save btn btn-default" onclick='botton01()'>run script</button>
         </form>
-<br><br>
-         <button class="save btn btn-default" onclick='botton01()' >run script</button>
-         <br><br>
-         {{ reft }}
-<div id='container02' class="div01">
+-->
 
-</div>
+         {{ reft }}
+
+ <div class="container">
+  <button class="save btn btn-default" onclick='botton01()' style="width: 100%" >run script</button>
+         <div id='container02' class="div01"> </div>
+ </div>
+
 
     {% endblock %}
 
