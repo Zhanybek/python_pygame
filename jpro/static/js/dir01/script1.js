@@ -2,40 +2,16 @@
  * Created by ab01 on 7/8/2017.
  */
 
-    function createTree(container, obj) {
-      container.innerHTML = createTreeText(obj);
-    }
+$(document).ready(function(){
+       console.log('jQuery test');
 
-    function createTreeText(obj) { // отдельная рекурсивная функция
-      let tbL = '';
-      console.log('length= '+obj.length);
+    $(document).on("click", "#eventsTable2 tr", function(e) {
+        alert('ASD '+this.id);
+    });
 
-//if (obj.hasOwnProperty(key)) {
-    for (var key in obj) {
-       let getl =obj[key];
-       tbL += '<tr><td style="display:none;">'+getl['id']+'</td><td>' + (key*1+1) +'</td><td>'+ getl['param5'] + '</td></tr>';
-     }
+   $("#button01").click(function(){
 
-/*
-      for (var key in obj) {
-        li += '<li>' + key + createTreeText(obj[key]) + '</li>';
-      }
-*/
-      if (tbL) {
-        var ul = '<table>' + tbL + '</table>';
-          let div01 = document.getElementsByClassName("div01");
-         // div01.container02.style.overflow = 'auto'
-         // div01.class.overflow //='scroll'
-      }
-
-      return ul || '';
-    }
-
-
-
-function botton01() {
-var json_M='{"param5": "$80,000+H OLOMOUC", "started": "1500121908", "ended": null}';
- $.ajax({
+    $.ajax({
         url: "/get_scipt/",
         type: 'GET',
         data: {
@@ -48,9 +24,6 @@ var json_M='{"param5": "$80,000+H OLOMOUC", "started": "1500121908", "ended": nu
                 console.log('--------');
                json=JSON.parse(json);
  //               console.dir(json);
-//    $('#table').bootstrapTable({
-//		data: json_M
-//	})
      var container = document.getElementById('container02');
      createTree(container, json);
             }
@@ -60,4 +33,80 @@ var json_M='{"param5": "$80,000+H OLOMOUC", "started": "1500121908", "ended": nu
         }
     });
 
+   });
+
+function createTree(container, obj) {
+  container.innerHTML = createTreeText(obj);
 }
+
+
+function createTreeText(obj) { // отдельная рекурсивная функция
+   let tbL = '';
+   console.log('length= '+obj.length);
+
+//if (obj.hasOwnProperty(key)) {
+   for (var key in obj) {
+      let getl =obj[key];
+      tbL += '<tr style=".selected{ background: silver;}"><td style="display:none;">'+getl['id']+'</td>' +
+          '<td>' + (key*1+1) +'</td><td>'+ getl['param5'] + '</td></tr>';
+    }
+
+   if (tbL) {//style="cursor:pointer"
+       var ul = '<table id="eventsTable2" style="cursor:pointer" class="table-condensed table-striped" a="><thead>'+
+     tbL + '</table>';
+         // let div01 = document.getElementsByClassName("div01");
+         // div01.container02.style.overflow = 'auto'
+         // div01.class.overflow //='scroll'
+   }
+
+     return ul || '';
+ }
+
+});
+
+//============================================================
+/*
+//    $(function () {
+ //   var $result = $('#eventsResult');
+
+    $('#eventsTable').on('all.bs.table', function (e, name, args) {
+        console.log('Event:', name, ', data:', args);
+    })
+    .on('click-row.bs.table', function (e, row, $element) {
+        console.log('Event: click-row.bs.table');
+    })
+    .on('dbl-click-row.bs.table', function (e, row, $element) {
+        console.log('Event: dbl-click-row.bs.table');
+    })
+    .on('sort.bs.table', function (e, name, order) {
+        console.log('Event: sort.bs.table');
+    })
+    .on('check.bs.table', function (e, row) {
+        console.log('Event: check.bs.table');
+    })
+    .on('uncheck.bs.table', function (e, row) {
+        console.log('Event: uncheck.bs.table');
+    })
+    .on('check-all.bs.table', function (e) {
+        console.log('Event: check-all.bs.table');
+    })
+    .on('uncheck-all.bs.table', function (e) {
+        $result.text('Event: uncheck-all.bs.table');
+    })
+    .on('load-success.bs.table', function (e, data) {
+        console.log('Event: load-success.bs.table');
+    })
+    .on('load-error.bs.table', function (e, status) {
+        console.log('Event: load-error.bs.table');
+    })
+    .on('column-switch.bs.table', function (e, field, checked) {
+        console.log('Event: column-switch.bs.table');
+    })
+    .on('page-change.bs.table', function (e, number, size) {
+        console.log('Event: page-change.bs.table');
+    })
+    .on('search.bs.table', function (e, text) {
+        console.log('Event: search.bs.table');
+    });
+//});
+*/

@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from jpro.mscript.script01 import scriptJ
+#import jpro.mscript.dispetch_controller as controller
+from jpro.mscript.dispetch_controller import runner
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
@@ -34,11 +36,12 @@ def get_scipt(request):
     return render(request, 'jpro/janix.html', {'reft': jsondataL})
 '''
 
-def get_scipt(request):
+def controller(request):
     print('------------------------get_scipt: ')
     if request.method == "GET":
         print('----------------GET: ', request.GET.get('par1')+ ' tok: ',request.GET.get('csrftoken'))
-        jsondataL = scriptJ()
+#        jsondataL = scriptJ()
+        jsondataL = runner()
 #        request.session['view'] = request.GET['view']
         return HttpResponse(jsondataL, content_type='text/html')
     else:

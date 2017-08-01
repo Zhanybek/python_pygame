@@ -4,6 +4,12 @@ from time import strftime
 import requests
 import json
 
+import sys
+#from . import Conn_DB
+from .Conn_DB import f_conn_BD
+from .get_json01 import tennisinfo_f
+
+
 def matchstatus_live(p1, p2, p3):
     jdatal = {}
     jdatal['id'] = p1
@@ -17,10 +23,13 @@ def scriptJ():
     now_date_str = datetime.datetime.now().strftime('%Y%m%d')
 #    date_str = str(now_date.year)+ str(now_date.month)+ str(now_date.day)
 
+#    Conn_DB.f_conn_BD()
+    tennisinfo_f()
+
     try:
         response = requests.get(
            'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/'+now_date_str, timeout=(10, 10))
-#           'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170717', timeout = (10, 10))
+#           'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/20170720', timeout = (10, 10))
         print('https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/'+now_date_str)
 
         data = json.loads(response.content)
@@ -28,10 +37,12 @@ def scriptJ():
         print('====+scriptJ()+====')
         jdata = []
 
+
         my_list = data['doc'][0]['data']['matches']
         i=0
         for elm in my_list:
             matchstatus = data['doc'][0]['data']['matches'][elm]['match']['matchstatus']
+
             if matchstatus == 'live':
 #                jdata[elm] = elm
                 jdata.append(matchstatus_live(elm, matchstatus,data['doc'][0]['data']['matches'][elm]))
