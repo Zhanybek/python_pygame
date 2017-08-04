@@ -3,7 +3,6 @@ import requests
 import datetime
 from time import time
 
-from jpro.models import tennisinfo
 from .Conn_DB import f_conn_BD
 
 def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['data']['matches'][ij]
@@ -33,26 +32,7 @@ def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['
              jdatal['ground_name'] = tournaments[ijt]['ground']['name']
              jdatal['ground_mainid'] = tournaments[ijt]['ground']['mainid']
              jdatal['ground_main'] = tournaments[ijt]['ground']['main']
-    '''
-'id,               
-'matches_id,      matches."12094402"
- tid              matche._tid
-'matchstatus,     matches.match.matchstatus
-'param5,          matches.param5
-'param10,         matches.param10
-'city,            tournaments.tennisinfo.city
-'gender,          tournaments.tennisinfo.gender
-'type,            tournaments.tennisinfo.type
-'kind_sport,      "tennis"
-'prize_amount,    tournaments.tennisinfo.prize.amount
-'prize_currency,  tournaments.tennisinfo.prize.currency
-'itfid,           tournaments.itfid
-'itfname,         tournaments.itfname
-'ground_id,       tournaments.ground._id
-'ground_name,     tournaments.ground.name
-'ground_mainid,   tournaments.ground.mainid
-'ground_main'     tournaments.ground.main
-'''
+
     return jdatal
 
 def tennisinfo_f():
@@ -107,3 +87,6 @@ def tennisinfo_f():
     else:
         print('Oops. no data!')
         return None
+
+def GetmatchesDetails():
+    pass

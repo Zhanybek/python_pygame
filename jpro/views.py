@@ -1,10 +1,9 @@
+import requests
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.utils import timezone
 
-from jpro.mscript.script01 import scriptJ
-#import jpro.mscript.dispetch_controller as controller
-from jpro.mscript.dispetch_controller import runner
+#from jpro.mscript.dispetch_controller import GetTournamentsJlist
+import jpro.mscript.dispetch_controller as dc
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
@@ -39,11 +38,18 @@ def get_scipt(request):
 def controller(request):
     print('------------------------get_scipt: ')
     if request.method == "GET":
-        print('----------------GET: ', request.GET.get('par1')+ ' tok: ',request.GET.get('csrftoken'))
+        client = requests.session()
+#        print('----------------GET: ', request.GET.get('par1')+ ' tok: ',client)
 #        jsondataL = scriptJ()
-        jsondataL = runner()
+        if request.GET.get('matches_id'):
+            if request.GET.get('matches_id') != '':
+                print('HI! ',request.GET.get('matches_id'))
+                MatchDetailsJList=dc.GetMatchDetails(request.GET.get('matches_id'))
+                return HttpResponse(MatchDetailsJList, content_type='text/html')
+        if request.GET.get('par1'):
+            tournamentsJlist = dc.GetTournamentsJlist()
 #        request.session['view'] = request.GET['view']
-        return HttpResponse(jsondataL, content_type='text/html')
+            return HttpResponse(tournamentsJlist, content_type='text/html')
     else:
         print('------------------------else: ')
         return HttpResponse('no', content_type='text/html')

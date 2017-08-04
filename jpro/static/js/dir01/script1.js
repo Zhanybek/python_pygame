@@ -3,33 +3,48 @@
  */
 
 $(document).ready(function(){
-       console.log('jQuery test');
-
     $(document).on("click", "#eventsTable2 tr", function(e) {
-        alert('ASD '+this.id);
+        console.log(this.childNodes[0].innerText);
+
+           $.ajax({
+       url: "/get_scipt/",
+       type: 'GET',
+       data: {
+         'matches_id': this.childNodes[0].innerText,
+         'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+       },
+       success: function (json) {
+           console.log('Hi all');
+           if (json!='None') {
+              json=JSON.parse(json);
+   var container = document.getElementById('container03');
+   container.innerHTML = json;
+
+           }
+           else
+               alert("No data");
+        }
+    });
+
     });
 
    $("#button01").click(function(){
 
-    $.ajax({
-        url: "/get_scipt/",
-        type: 'GET',
-        data: {
-          'par1': 'obana',
-          'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
-        },
-
-        success: function (json) {
-            if (json!='None') {
-                console.log('--------');
-               json=JSON.parse(json);
- //               console.dir(json);
-     var container = document.getElementById('container02');
-     createTree(container, json);
-            }
-            else
-                alert("No data");
-
+   $.ajax({
+       url: "/get_scipt/",
+       type: 'GET',
+       data: {
+         'par1': 'obana',
+         'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+       },
+       success: function (json) {
+           if (json!='None') {
+              json=JSON.parse(json);
+   var container = document.getElementById('container02');
+    createTree(container, json);
+           }
+           else
+               alert("No data");
         }
     });
 
@@ -47,12 +62,13 @@ function createTreeText(obj) { // отдельная рекурсивная фу
 //if (obj.hasOwnProperty(key)) {
    for (var key in obj) {
       let getl =obj[key];
-      tbL += '<tr style=".selected{ background: silver;}"><td style="display:none;">'+getl['id']+'</td>' +
+      tbL += '<tr"><td style="display:none;">'+getl['matches_id']+'</td>' + // style=".selected{ background: silver;}
           '<td>' + (key*1+1) +'</td><td>'+ getl['param5'] + '</td></tr>';
     }
 
    if (tbL) {//style="cursor:pointer"
-       var ul = '<table id="eventsTable2" style="cursor:pointer" class="table-condensed table-striped" a="><thead>'+
+       var ul = '<table id="eventsTable2" style="cursor:pointer"' +//
+           ' class="table table-hover" class="table-condensed table-striped" >'+
      tbL + '</table>';
          // let div01 = document.getElementsByClassName("div01");
          // div01.container02.style.overflow = 'auto'

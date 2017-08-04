@@ -1,8 +1,6 @@
 import json
-#import datetime
-from time import gmtime, strftime
 
-def RealiTournaments(cursor, conn, jdata):
+def RealizTournaments(cursor, conn, jdata):
     #    print('data is commit begin: ', strftime("%Y-%m-%d %H:%M:%S:%m", gmtime()))
     jdata = json.loads(jdata)
 
@@ -10,9 +8,8 @@ def RealiTournaments(cursor, conn, jdata):
     my_list = jdata
 #    sql = 'update jpro_tournaments set matchstatus=\'''\''
 #    cursor.execute(sql)
-#    conn.commit()
+
     TournamentsArc(conn,cursor,my_list)
-#    conn.commit()
     recsIns=0
     for ji in my_list:
         recsIns = recsIns+ jpro_tournaments_insert(cursor, ji)
