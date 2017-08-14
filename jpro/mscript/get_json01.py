@@ -1,8 +1,10 @@
 import json
 import requests
 import datetime
+from django.utils.timezone import now, pytz
 from time import time
 
+from jpro03 import settings
 from .Conn_DB import addMatches
 
 
@@ -17,10 +19,13 @@ def tennisinfo_f():
         s=s + q.gjson
     print(s)
     '''
-    now_date_str = datetime.datetime.now().strftime('%Y%m%d')
+    o_Tzone = pytz.timezone(settings.TIME_ZONE) # GMT+1
+
+    #now_date_str = datetime.datetime.now().strftime('%Y%m%d')
+    now_date_str = now().astimezone(o_Tzone).strftime('%Y%m%d')
     ourUrl = 'https://ls.sportradar.com/ls/feeds/?/itf/en/Europe:Berlin/gismo/client_dayinfo/'
     ourUrl += now_date_str
-    #ourUrl += '20170812'
+    # ourUrl += '20170812'
 
     try:
         response = requests.get(ourUrl, timeout=(10, 10))
@@ -33,7 +38,7 @@ def tennisinfo_f():
     data = json.loads(response.content)
     json_data = json.dumps(None)
     jdata = []
-#{"queryUrl":"client_dayinfo\/20170729","doc":[{"event":
+    # {"queryUrl":"client_dayinfo\/20170729","doc":[{"event":
     my_list = data['doc'][0]['data']['matches']
     for ij in my_list:
         matchstatus = data['doc'][0]['data']['matches'][ij]['match']['matchstatus']
@@ -41,21 +46,22 @@ def tennisinfo_f():
             jdata.append(matchstatus_live(ij, matchstatus, data['doc'][0]['data']['matches'][ij],
                                           data['doc'][0]['data']['tournaments']))
 
-#    print('jdata: ', jdata, ' jdata.len= ', len(jdata))  # None
+        #    print('jdata: ', jdata, ' jdata.len= ', len(jdata))  # None
     if len(jdata) == 0:
         print('Oops. no data!')
         return None
 
     json_data = json.dumps(jdata)
-#    print('json_data: ', json_data, ' json_data.len= ', len(json_data))  # None
+    #    print('json_data: ', json_data, ' json_data.len= ', len(json_data))  # None
     tic = time()
     addMatches('jpro_tournaments', json_data)
     toc = time()
-    print('diffTime: ',toc - tic)
+    print('diffTime: ', toc - tic)
 
     return 'Ok'
 
-def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['data']['matches'][ij]
+
+def matchstatus_live(ij, matchstatus, matches_ij, tournaments):  # data['doc'][0]['data']['matches'][ij]
     jdatal = {}
 
     jdatal['matches_id'] = ij
@@ -104,12 +110,12 @@ def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['
     jdatal['mt_result_home'] = matches_ij['match']['result']['home']
     jdatal['mt_result_away'] = matches_ij['match']['result']['away']
     jdatal['mt_result_winner'] = matches_ij['match']['result']['winner']
-    #print('mt_periods: ', matches_ij['match']['periods'])
+    # print('mt_periods: ', matches_ij['match']['periods'])
     jdatal['mt_periods'] = matches_ij['match']['periods']
     jdatal['mt_updated_uts'] = matches_ij['match']['updated_uts']
     jdatal['mt_p'] = matches_ij['match']['p']
     jdatal['mt_ptime'] = matches_ij['match']['ptime']
-    #print('mt_timeinfo: ',matches_ij['match']['timeinfo'])
+    # print('mt_timeinfo: ',matches_ij['match']['timeinfo'])
     jdatal['mt_timeinfo'] = matches_ij['match']['timeinfo']
     jdatal['mt_teams_home_name'] = matches_ij['match']['teams']['home']['name']
     try:
@@ -122,7 +128,7 @@ def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['
         jdatal['mt_teams_home_seed_type_short'] = ''
     jdatal['mt_teams_away_name'] = matches_ij['match']['teams']['away']['name']
     try:
-        jdatal['mt_teams_away_seed_seeding'] = 'seeding',matches_ij['match']['teams']['away']['seed']['seeding']
+        jdatal['mt_teams_away_seed_seeding'] = 'seeding', matches_ij['match']['teams']['away']['seed']['seeding']
     except Exception:
         jdatal['mt_teams_away_seed_seeding'] = ''
     try:
@@ -141,22 +147,21 @@ def matchstatus_live(ij, matchstatus, matches_ij,tournaments): #data['doc'][0]['
     jdatal['mt_tobeannounced'] = matches_ij['match']['tobeannounced']
     jdatal['courtdisplayorder'] = matches_ij['courtdisplayorder']
     jdatal['islivescoringprovided'] = matches_ij['islivescoringprovided']
-#    print('matches_ij: ',matches_ij )
-#    print('tournaments: ', tournaments)
+    #    print('matches_ij: ',matches_ij )
+    #    print('tournaments: ', tournaments)
 
     for ijt in tournaments:
-         if tournaments[ijt]['_id'] == matches_ij['match']['_tid']:
-             jdatal['city'] = tournaments[ijt]['tennisinfo']['city']
-             jdatal['gender'] = tournaments[ijt]['tennisinfo']['gender']
-             jdatal['type'] = tournaments[ijt]['tennisinfo']['type']
-             jdatal['kind_sport'] = 'tennis'
-             jdatal['prize_amount'] = tournaments[ijt]['tennisinfo']['prize']['amount']
-             jdatal['prize_currency'] = tournaments[ijt]['tennisinfo']['prize']['currency']
-             jdatal['tourn_name'] = tournaments[ijt]['name']
-             jdatal['ground_id'] = tournaments[ijt]['ground']['_id']
-             jdatal['ground_mainid'] = tournaments[ijt]['ground']['mainid']
-             jdatal['itfstartdate'] = tournaments[ijt]['itfstartdate']
-             jdatal['itfenddate'] = tournaments[ijt]['itfenddate']
+        if tournaments[ijt]['_id'] == matches_ij['match']['_tid']:
+            jdatal['city'] = tournaments[ijt]['tennisinfo']['city']
+            jdatal['gender'] = tournaments[ijt]['tennisinfo']['gender']
+            jdatal['type'] = tournaments[ijt]['tennisinfo']['type']
+            jdatal['kind_sport'] = 'tennis'
+            jdatal['prize_amount'] = tournaments[ijt]['tennisinfo']['prize']['amount']
+            jdatal['prize_currency'] = tournaments[ijt]['tennisinfo']['prize']['currency']
+            jdatal['tourn_name'] = tournaments[ijt]['name']
+            jdatal['ground_id'] = tournaments[ijt]['ground']['_id']
+            jdatal['ground_mainid'] = tournaments[ijt]['ground']['mainid']
+            jdatal['itfstartdate'] = tournaments[ijt]['itfstartdate']
+            jdatal['itfenddate'] = tournaments[ijt]['itfenddate']
 
     return jdatal
-
