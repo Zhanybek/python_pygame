@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('prize_amount', models.CharField(max_length=64)),
                 ('prize_currency', models.CharField(max_length=32)),
                 ('itfid', models.CharField(max_length=64)),
-                ('itfname', models.CharField(max_length=64)),
+                ('tourn_name', models.CharField(max_length=64)),
                 ('ground_id', models.CharField(max_length=8)),
                 ('ground_name', models.CharField(max_length=32)),
                 ('ground_mainid', models.CharField(max_length=8)),

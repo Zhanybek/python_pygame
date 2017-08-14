@@ -909,35 +909,35 @@ pre code {
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 1px;
+  padding-left: 1px;
 }
 
 @media (min-width: 576px) {
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 1px;
+    padding-left: 1px;
   }
 }
 
 @media (min-width: 768px) {
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 1px;
+    padding-left: 1px;
   }
 }
 
 @media (min-width: 992px) {
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 1px;
+    padding-left: 1px;
   }
 }
 
 @media (min-width: 1200px) {
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 1px;
+    padding-left: 1px;
   }
 }
 
@@ -1466,7 +1466,7 @@ pre code {
     -webkit-flex: 0 0 33.333333%;
         -ms-flex: 0 0 33.333333%;
             flex: 0 0 33.333333%;
-    max-width: 33.333333%;
+    max-width: 30%;
   }
   .col-md-5 {
     -webkit-box-flex: 0;
@@ -2079,23 +2079,19 @@ pre code {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 1rem;
 }
 
 .table th,
 .table td {
-  padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #eceeef;
 }
 
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #eceeef;
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #eceeef;
+  border-top: 0px solid #eceeef;
 }
 
 .table .table {
@@ -2104,7 +2100,7 @@ pre code {
 
 .table-sm th,
 .table-sm td {
-  padding: 0.3rem;
+  padding: 0.1rem;
 }
 
 .table-bordered {
@@ -2118,7 +2114,7 @@ pre code {
 
 .table-bordered thead th,
 .table-bordered thead td {
-  border-bottom-width: 2px;
+  border-bottom-width: 1px;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -3189,7 +3185,7 @@ tbody.collapse.show {
 .dropdown-item {
   display: block;
   width: 100%;
-  padding: 3px 1.5rem;
+  padding: 1px 1.5rem;
   clear: both;
   font-weight: normal;
   color: #292b2c;
@@ -3631,8 +3627,8 @@ tbody.collapse.show {
 }
 
 .custom-control-input:focus ~ .custom-control-indicator {
-  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 3px #0275d8;
-          box-shadow: 0 0 0 1px #fff, 0 0 0 3px #0275d8;
+  -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 1px #0275d8;
+          box-shadow: 0 0 0 1px #fff, 0 0 0 1px #0275d8;
 }
 
 .custom-control-input:active ~ .custom-control-indicator {
@@ -4036,8 +4032,8 @@ tbody.collapse.show {
             flex-direction: row;
   }
   .navbar-toggleable .navbar-nav .nav-link {
-    padding-right: .5rem;
-    padding-left: .5rem;
+    padding-right: .3rem;
+    padding-left: .3rem;
   }
   .navbar-toggleable > .container {
     display: -webkit-box;
@@ -5593,7 +5589,7 @@ button.close {
 
 .tooltip.tooltip-top, .tooltip.bs-tether-element-attached-bottom {
   padding: 5px 0;
-  margin-top: -3px;
+  margin-top: -1px;
 }
 
 .tooltip.tooltip-top .tooltip-inner::before, .tooltip.bs-tether-element-attached-bottom .tooltip-inner::before {
@@ -5607,7 +5603,7 @@ button.close {
 
 .tooltip.tooltip-right, .tooltip.bs-tether-element-attached-left {
   padding: 0 5px;
-  margin-left: 3px;
+  margin-left: 1px;
 }
 
 .tooltip.tooltip-right .tooltip-inner::before, .tooltip.bs-tether-element-attached-left .tooltip-inner::before {
@@ -5621,7 +5617,7 @@ button.close {
 
 .tooltip.tooltip-bottom, .tooltip.bs-tether-element-attached-top {
   padding: 5px 0;
-  margin-top: 3px;
+  margin-top: 1px;
 }
 
 .tooltip.tooltip-bottom .tooltip-inner::before, .tooltip.bs-tether-element-attached-top .tooltip-inner::before {
@@ -5635,7 +5631,7 @@ button.close {
 
 .tooltip.tooltip-left, .tooltip.bs-tether-element-attached-right {
   padding: 0 5px;
-  margin-left: -3px;
+  margin-left: -1px;
 }
 
 .tooltip.tooltip-left .tooltip-inner::before, .tooltip.bs-tether-element-attached-right .tooltip-inner::before {
@@ -5649,7 +5645,7 @@ button.close {
 
 .tooltip-inner {
   max-width: 200px;
-  padding: 3px 8px;
+  padding: 1px 8px;
   color: #fff;
   text-align: center;
   background-color: #000;
@@ -6008,9 +6004,9 @@ button.close {
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
   max-width: 30px;
-  height: 3px;
-  margin-right: 3px;
-  margin-left: 3px;
+  height: 1px;
+  margin-right: 1px;
+  margin-left: 1px;
   text-indent: -999px;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.5);

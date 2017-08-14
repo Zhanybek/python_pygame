@@ -46,8 +46,8 @@ class  Tournaments(models.Model):
     prize_currency = models.CharField(max_length=32)
 #    [itfid] CHAR(64),
     itfid = models.CharField(max_length=64)
-#    [itfname] CHAR(64),
-    itfname = models.CharField(max_length=64)
+#    [tourn_name] CHAR(64),
+    tourn_name = models.CharField(max_length=64)
 #    [ground_id] CHAR(8),
     ground_id = models.CharField(max_length=8)
 #    [ground_name] CHAR(32),

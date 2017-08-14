@@ -4,13 +4,13 @@
     }
 
  body {
-        padding-left: 15px;
+        padding-left: 2px;
     }
 
   .page-header {
         background-color: #ff9444;
         margin-top: 0;
-        padding: 5px 5px 5px 5px;
+        padding: 2px 2px 2px 2px;
     }
 
     .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -20,7 +20,7 @@
     }
 
     .content {
-        margin-left: 40px;
+        margin-left: 2px;
     }
 
     h1, h2, h3, h4 {
@@ -44,11 +44,11 @@
         color: #ffffff;
         float: right;
         font-size: 26pt;
-        margin-right: 20px;
+        margin-right: 2px;
     }
 
     .post {
-        margin-bottom: 70px;
+        margin-bottom: 5px;
     }
 
     .post h1 a, .post h1 a:visited {
@@ -62,6 +62,7 @@
     height: 100%;
     width: 100%;
     overflow: auto;
+     margin-right: 2px;
 }
 
 .li01 {

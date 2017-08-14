@@ -6,7 +6,7 @@
  <!--    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/jpro.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+<!--    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css"> -->
     <script src="{% static 'js/lib/jquery-3.2.1.js' %} "></script>
     <script src="{% static 'js/lib/bootstrap.js' %} "></script>
     <script src="{% static 'js/dir01/script1.js' %} "></script>
@@ -26,37 +26,18 @@
 <li class="li01"><a href="/baseball/">Бейсбол</a></li>
 <li class="li01"><a href="/winter-sports/">Зимние виды</a></li>
         </ul>
-<!--   <div class="menu-border"> </div>  -->
 
-        <!--
-<div class=""></div>
-<ul class="nav nav-tabs">
-  <li class="active">
-    <a href="#">Home</a>
-  </li>
-  <li><button >run script</button></li>
-  <li><button >run script</button></li>
-    <li><button >run script</button></li>
-    <li><button >run script</button></li>
-    <li><button >run script</button></li>
-    <li><button >run script</button></li>
-</ul>
--->
-
-        <div class="content container">
-        <div class="col-sm-10"> </div>
-
-
-
-            <div class="row">
-                <div class="col-md-4">
+    <div class="content container">
+        <div class="row">
+             <div class="col-md-4" style="border:1px solid #a6d5ec;">
                 {% block content %}
                 {% endblock %}
-            </div>
-                <div class="col-md-8">
-<div id='container03' class="div01"> </div>
-                 </div>
-            </div>
+             </div>
+             <div class="col-md-8" class="container-fluid" style="border:1px solid #a6d5ec;">
+                {% block content1 %}
+                {% endblock %}
+             </div>
         </div>
+    </div>
         </body>
     </html>

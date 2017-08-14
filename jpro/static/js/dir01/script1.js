@@ -4,44 +4,82 @@
 
 $(document).ready(function(){
     $(document).on("click", "#eventsTable2 tr", function(e) {
-        console.log(this.childNodes[0].innerText);
+        var thChNodes = this.childNodes[0];
+        if($(this).parent().parent().attr('id')=== 'eventsTable2') {
 
-           $.ajax({
-       url: "/get_scipt/",
-       type: 'GET',
-       data: {
-         'matches_id': this.childNodes[0].innerText,
-         'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
-       },
-       success: function (json) {
-           console.log('Hi all');
+            var theThis = thChNodes.parentNode;
+            var nextThis =$(theThis).closest('tr');
+            if (nextThis.next('tr')[0].childNodes[0].innerHTML === '') {
+                nextThis.next('tr').remove();
+                return;
+            }
+            if (thChNodes.innerText != '') {
+                $.ajax({
+                    url: "/get_scipt/",
+                    type: 'GET',
+                    data: {
+                        'tid': thChNodes.innerText,
+                        'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+                    },
+                    success: function (json) {
+                        if (json != 'None') {
+                            json = JSON.parse(json);
+                            tRow='';
+                            for (var key in json) {
+                                let getl = json[key];
+                                let women ='';
+
+                                if(getl['f3'].toLowerCase() =='women')
+                                    women ='bgcolor="#FBACAC"';
+                                tRow += '<tr '+women+'><td style="display:none;">'+getl['f1']+'</td>' +
+                                    '<td style="display:none;"></td><td>' + getl['f2'] + '; ' + getl['f3'] + '</td></tr>';
+                            }
+                              tRow = '<table id=\'eventsTable3\'>' + tRow + '</table>';
+
+                            var tRow = '<tr><td></td><td>' + tRow + '</td></tr>';
+                            nextThis.after(tRow);
+                        }
+                        else
+                            alert("No data");
+                    }
+                });
+            }
+        }
+if($(this).parent().parent().attr('id')=== 'eventsTable3') {
+   $.ajax({
+      url: "/get_scipt/",
+      type: 'GET',
+      data: {
+        'mid': thChNodes.innerText,
+        'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+      },
+      success: function (json) {
            if (json!='None') {
-              json=JSON.parse(json);
    var container = document.getElementById('container03');
-   container.innerHTML = json;
-
+   var partxt ='<b>'+thChNodes.parentNode.children[2].innerHTML+'</b>>';
+   createDetailsRep(container,json,thChNodes.innerText,partxt);
            }
            else
                alert("No data");
         }
     });
-
+}
     });
 
    $("#button01").click(function(){
 
-   $.ajax({
-       url: "/get_scipt/",
-       type: 'GET',
-       data: {
-         'par1': 'obana',
-         'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
-       },
+       $.ajax({
+         url: "/get_scipt/",
+         type: 'GET',
+         data: {
+           'par1': 'obana',
+           'csrftoken': document.getElementsByName("csrfmiddlewaretoken")[0].value,
+         },
        success: function (json) {
            if (json!='None') {
               json=JSON.parse(json);
-   var container = document.getElementById('container02');
-    createTree(container, json);
+        var container = document.getElementById('container02');
+       createTree(container, json, 'eventsTable2' );
            }
            else
                alert("No data");
@@ -50,36 +88,58 @@ $(document).ready(function(){
 
    });
 
-function createTree(container, obj) {
-  container.innerHTML = createTreeText(obj);
+function createTree(container, obj, nameTab) {
+    container.innerHTML = createTreeText(obj, nameTab);
 }
 
+function createTreeText(obj, nameTab) {
 
-function createTreeText(obj) { // отдельная рекурсивная функция
-   let tbL = '';
-   console.log('length= '+obj.length);
-
-//if (obj.hasOwnProperty(key)) {
-   for (var key in obj) {
-      let getl =obj[key];
-      tbL += '<tr"><td style="display:none;">'+getl['matches_id']+'</td>' + // style=".selected{ background: silver;}
-          '<td>' + (key*1+1) +'</td><td>'+ getl['param5'] + '</td></tr>';
-    }
+   let tbL =createTr(obj);
 
    if (tbL) {//style="cursor:pointer"
-       var ul = '<table id="eventsTable2" style="cursor:pointer"' +//
+       var ul = '<table id="'+nameTab+'" style="cursor:pointer"' +//
            ' class="table table-hover" class="table-condensed table-striped" >'+
      tbL + '</table>';
-         // let div01 = document.getElementsByClassName("div01");
-         // div01.container02.style.overflow = 'auto'
-         // div01.class.overflow //='scroll'
    }
 
      return ul || '';
  }
 
+ function createTr(obj) {
+    let tRow ='';
+    for (var key in obj) {
+      let getl =obj[key];
+      tRow += '<tr><td style="display:none;">'+getl['f1']+'</td>' + // style=".selected{ background: silver;}
+          '<td>' + (key*1+1) +'</td><td>'+ getl['f3'] + '</td></tr>';
+    }
+    return tRow;
+ }
+
 });
 
+function createDetailsRep(container, obj, ids,partxt) {
+   obj=JSON.parse(obj);
+  let titulDiv ='<button type="button" class="btn-small btn-info" onclick="delDetailsAcordion(\''+ids+'\');">x</button>&nbsp';
+    titulDiv+='<a data-toggle="collapse" data-target="#'+ids+'" href="" >'+partxt+'; '+obj[0][0]+'</a>';
+  let inHtmls='<div style="border:1px solid #0ecff2;" id="'+ids+'" class="expand">';
+    inHtmls+=obj[0][1].substring(0,10)+' '+obj[0][2]+'<br> '+obj[0][10]+' - '+obj[0][11]+' <br> '+obj[0][9];
+    inHtmls+='</div>';
+
+  var child_th=container.getElementsByTagName('*');
+  for(var i=0; i<child_th.length; i++)
+      if(child_th[i].id==ids){
+        child_th[i].innerHTML=inHtmls;
+      return;
+      }
+     container.innerHTML =
+         container.innerHTML+ '<div id="'+ids+'_div" style="background-color: #fff1e8;">'+titulDiv+ inHtmls+'</div>';
+      //border:1px solid #0ecff2;
+}
+
+function delDetailsAcordion(ids) {
+  idElem = document.getElementById(ids+'_div');
+  idElem.parentNode.removeChild(idElem);
+}
 //============================================================
 /*
 //    $(function () {

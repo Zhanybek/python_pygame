@@ -9,24 +9,23 @@ import sqlite3 as db
 
 from jpro.mscript.set_tournaments import RealizTournaments
 
+def get_connection (db_name):
+    # Создаем соединение с нашей базой данных
+    # В нашем примере у нас это просто файл базы
+    conn = db.connect(db_name)
+    return conn
 
-def f_conn_BD(tbl, jdata):
-# Создаем соединение с нашей базой данных
-# В нашем примере у нас это просто файл базы
-    conn = db.connect('db.sqlite3')
-# Создаем курсор - это специальный объект который делает запросы и получает их результаты
+def addMatches(tbl, jdata): # f_conn_BD
+    conn = get_connection ('db.sqlite3')
+    # Создаем курсор - это специальный объект который делает запросы и получает их результаты
     cursor = conn.cursor()
-
 # ТУТ БУДЕТ НАШ КОД РАБОТЫ С БАЗОЙ ДАННЫХ
     RealizTournaments(cursor,conn, jdata)
-#    addToJpro_tournaments(cursor,conn, jdata)
-
-#    cursor.execute('SELECT tid,name FROM jpro_tournaments ORDER BY tid LIMIT 3')
 
 # КОД ДАЛЬНЕЙШИХ ПРИМЕРОВ ВСТАВЛЯТЬ В ЭТО МЕСТО
 
 #    results = cursor.fetchall()
-
 #    print(results)
+
 # Не забываем закрыть соединение с базой данных
     conn.close()

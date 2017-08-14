@@ -2,70 +2,72 @@ import requests
 from django.http import HttpResponse
 from django.utils import timezone
 
-#from jpro.mscript.dispetch_controller import GetTournamentsJlist
+# from jpro.mscript.dispetch_controller import GetTournamentsJlist
 import jpro.mscript.dispetch_controller as dc
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
+
 # Create your views here.
 '''
 def post_list(request):
     return render(request, 'jpro/post_list.html', {})
 '''
 
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'jpro/post_list.html', {'posts': posts})
 
+
 def post_detail(request, pk):
-    print('pk: ',pk)
+    print('pk: ', pk)
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'jpro/post_detail.html', {'post': post})
 
+
 def jonny(request):
-#    jsondataL = scriptJ()
-    print('------------------------taki jonny ')
     return render(request, 'jpro/janix.html', {})
 
-'''
-def get_scipt(request):
-    print('------------------------get_scipt: ')
-    jsondataL = scriptJ()
-    return render(request, 'jpro/janix.html', {'reft': jsondataL})
-'''
 
 def controller(request):
     print('------------------------get_scipt: ')
     if request.method == "GET":
-        client = requests.session()
-#        print('----------------GET: ', request.GET.get('par1')+ ' tok: ',client)
-#        jsondataL = scriptJ()
-        if request.GET.get('matches_id'):
-            if request.GET.get('matches_id') != '':
-                print('HI! ',request.GET.get('matches_id'))
-                MatchDetailsJList=dc.GetMatchDetails(request.GET.get('matches_id'))
-                return HttpResponse(MatchDetailsJList, content_type='text/html')
+        #        client = requests.session()
+
         if request.GET.get('par1'):
             tournamentsJlist = dc.GetTournamentsJlist()
-#        request.session['view'] = request.GET['view']
             return HttpResponse(tournamentsJlist, content_type='text/html')
+
+        reqGet = request.GET.get('tid')
+        if request.GET.get('tid'):
+            if reqGet != '':
+                MatchDetailsJList = dc.GetMatchesJlist(reqGet)
+                return HttpResponse(MatchDetailsJList, content_type='text/html')
+
+        reqGet = request.GET.get('mid')
+        if reqGet:
+            if reqGet != '':
+                MatchDetailsJList = dc.GetMatchDetails(reqGet)
+                return HttpResponse(MatchDetailsJList, content_type='text/html')
     else:
-        print('------------------------else: ')
-        return HttpResponse('no', content_type='text/html')
+        return HttpResponse('None', content_type='text/html')
+
 
 def post_new(request):
-   if request.method == "POST":
-       form = PostForm(request.POST)
-       if form.is_valid():
-           post = form.save(commit=False)
-           post.author = request.user
-           post.published_date = timezone.now()
-           post.save()
-           return redirect('post_detail', pk=post.pk)
-   else:
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
         form = PostForm()
-   return render(request, 'jpro/post_edit.html', {'form': form})
+    return render(request, 'jpro/post_edit.html', {'form': form})
+
 
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
